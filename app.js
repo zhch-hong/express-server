@@ -7,6 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var administrativeRouter = require('./routes/administrative');
+var schoolRouter = require('./routes/school');
 
 var app = express();
 
@@ -16,7 +17,7 @@ app.all('*', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', allowOrigin);
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
   res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS');
-  res.header('Access-Control-Allow-Credentials', true); //可以带cookies
+  res.header('Access-Control-Allow-Credentials', true); // 可以带cookies
   res.header('X-Powered-By', 'Express');
   if (req.method == 'OPTIONS') {
     res.sendStatus(200);
@@ -38,6 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/administrative', administrativeRouter);
+app.use('/school', schoolRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -56,4 +58,3 @@ app.use(function (err, req, res, next) {
 });
 
 module.exports = app;
-
