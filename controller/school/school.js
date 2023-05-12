@@ -1,10 +1,10 @@
 const { v4 } = require('uuid');
-const { Kindergarten } = require('@/models/school/Kindergarten');
+const { School } = require('@/models/school/School');
 
-class KindergartenHandle {
-  async createKindergarten(req, res) {
+class SchoolHandle {
+  async createSchool(req, res) {
     const uuid = v4();
-    await Kindergarten.create({
+    await School.create({
       uuid,
       name: req.body.name,
       streetCode: req.body.streetCode,
@@ -18,12 +18,17 @@ class KindergartenHandle {
     res.send();
   }
 
-  async readKindergarten(req, res) {
+  async schoolDetail(req, res) {
     const uuid = req.query.uuid;
-    const data = await Kindergarten.findAll({ where: { uuid } });
+    const data = await School.findAll({ where: { uuid } });
+    res.send(JSON.stringify(data, null, 2));
+  }
+
+  async schoolList(req, res) {
+    const data = await School.findAll();
     res.send(JSON.stringify(data, null, 2));
   }
 }
 
-module.exports = new KindergartenHandle();
+module.exports = new SchoolHandle();
 

@@ -1,8 +1,8 @@
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('@/mysql/sequelize');
 
-const Kindergarten = sequelize.define(
-  'kindergarten',
+const School = sequelize.define(
+  'school',
   {
     uuid: {
       primaryKey: true,
@@ -20,5 +20,5 @@ const Kindergarten = sequelize.define(
   { freezeTableName: true, timestamps: false }
 );
 
-module.exports = { Kindergarten };
+module.exports = { School };
 
